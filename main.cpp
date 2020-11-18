@@ -1,6 +1,6 @@
-#include <iostream>
-#include <thread>
-#include <chrono>
+#include <iostream>       // std::cout, std::endl
+#include <thread>         // std::this_thread::sleep_for
+#include <chrono>         // std::chrono::seconds
 #include "Graphics.h"
 
 using namespace std;
@@ -16,5 +16,8 @@ int main()
     graphics.DrawPixel(6,7, "\e[0;32m");
 
     string buffer = graphics.DrawBuffer();
-    cout <<  buffer << endl;
+    while(true) {
+       cout <<  buffer << endl;
+       system("CLS");
+    }
 }
