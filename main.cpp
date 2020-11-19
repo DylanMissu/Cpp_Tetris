@@ -26,6 +26,7 @@ int main()
     };
 
     TetrisBlock blockL(L);
+    blockL.right();
     blockL.show(graphics, "\e[0;31m");
     
 
