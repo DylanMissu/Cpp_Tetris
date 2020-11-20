@@ -23,6 +23,11 @@ void TetrisBlock::down()
     _y += 1;
 }
 
+void TetrisBlock::up() 
+{
+    _y -= 1;
+}
+
 void TetrisBlock::setAbsolutePosition(int x, int y)
 {
     _x = x;
@@ -35,13 +40,13 @@ void TetrisBlock::setRelativePosition(int x, int y)
     _y += y;
 }
 
-void TetrisBlock::show(Graphics graphics, std::string colorCode) 
+void TetrisBlock::show(Graphics graphics) 
 {
     for (int i=0; i<16; i++) 
     {
         if(_block[i] != 0)
         {
-            graphics.DrawPixel(_x + i%4, _y + i/4, colorCode);
+            graphics.DrawPixel(_x + i%4, _y + i/4, _block[i]);
         }
     }
 }

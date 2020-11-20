@@ -32,9 +32,9 @@ void Graphics::DrawGameBorder(int width, int height)
     }
 }
 
-void Graphics::DrawPixel(int x, int y, std::string colorCode)
+void Graphics::DrawPixel(int x, int y, int colorCode)
 {
-    buffer[x + gameWidth*y] = colorCode + "\xDB\xDB" + "\e[0m";
+    buffer[x + gameWidth*y] = colors[colorCode] + "\xDB\xDB" + colors[0];
 }
 
 void Graphics::ClearRect(int x, int y, int width, int height) {

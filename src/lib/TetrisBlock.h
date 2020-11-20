@@ -5,7 +5,7 @@
 class TetrisBlock {
     public:
         TetrisBlock(int *block);
-        void show(Graphics graphics, std::string colorCode);
+        void show(Graphics graphics);
         void setAbsolutePosition(int x, int y);
         void setRelativePosition(int x, int y);
 
@@ -13,6 +13,7 @@ class TetrisBlock {
         void left();
         void right();
         void down();
+        void up();
 
     private:
         int _block[16];
