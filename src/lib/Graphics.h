@@ -7,6 +7,7 @@ class Graphics {
         Graphics(const int width, const int height);
         void DrawGameBorder(int width, int height);
         void DrawPixel(int x, int y, std::string colorCode);
+        void ClearRect(int x, int y, int width, int height);
         int getWidth();
         int getHeight();
         std::string DrawBuffer();

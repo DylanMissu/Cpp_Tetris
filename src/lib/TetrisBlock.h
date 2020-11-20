@@ -15,5 +15,7 @@ class TetrisBlock {
         void down();
 
     private:
-        int block[16];
+        int _block[16];
+        int _y = 0;
+        int _x = 0;
 };
