@@ -24,6 +24,7 @@ LIBDIR=$(SRCDIR)/lib
 BUILDDIR=bin
 
 OBJS := $(SRCDIR)/main.o \
+				$(LIBDIR)/Timer.o \
 				$(LIBDIR)/Graphics.o \
 				$(LIBDIR)/TetrisBlock.o
 

@@ -1,4 +1,5 @@
 #include <iostream>
+#include "lib/Timer.h"
 #include "lib/Graphics.h"
 #include "lib/TetrisBlock.h"
 #include "lib/resources/Shapes.h"
@@ -8,6 +9,7 @@ using namespace std;
 
 int main()
 {
+    Timer timer;
     Shapes shapes;
     Graphics graphics(12, 24);
     graphics.DrawGameBorder(12, 24);
@@ -15,6 +17,7 @@ int main()
     TetrisBlock BlueRicky(shapes.blueRicky);
 
     bool updated = false;
+
     while(true) 
     {
         if(GetKeyState(VK_LEFT) & 0x8000)
@@ -43,10 +46,10 @@ int main()
             BlueRicky.rotate();
         }
 
-        if(getMillis() > 500)
+        if(timer.getElapsedMillis() > 500)
         {
             updated = false;
-            resetMillis();
+            timer.resetTimer();
             BlueRicky.down();
         }
 
