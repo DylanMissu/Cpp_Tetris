@@ -4,7 +4,7 @@
 
 class TetrisBlock {
     public:
-        TetrisBlock(int *block);
+        TetrisBlock(const int *block);
         void show(Graphics graphics);
         void setAbsolutePosition(int x, int y);
         void setRelativePosition(int x, int y);
@@ -13,7 +13,8 @@ class TetrisBlock {
         void left();
         void right();
         void down();
-        void up();
+        void up(); //temporary for testing
+        void rotate();
 
     private:
         int _block[16];

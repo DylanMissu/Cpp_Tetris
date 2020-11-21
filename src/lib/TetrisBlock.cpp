@@ -1,6 +1,6 @@
 #include "TetrisBlock.h"
 
-TetrisBlock::TetrisBlock(int block[16]) 
+TetrisBlock::TetrisBlock(const int *block) 
 {
     for (int i=0; i<16; i++) 
     {
@@ -23,9 +23,28 @@ void TetrisBlock::down()
     _y += 1;
 }
 
+//temporary for testing
 void TetrisBlock::up() 
 {
     _y -= 1;
+}
+
+void TetrisBlock::rotate()
+{
+    int tempBlock[16] = {};
+
+    for (int i=0; i<4; i++)
+    {
+        for (int j=0; j<4; j++)
+        {
+            //https://stackoverflow.com/questions/20149783/rotating-a-2d-converted-1d-array-90-degrees-clockwise
+            tempBlock[(j) + 4*(i)] = _block[(i) + 4*(4 - 1 - j)];
+        }
+    }
+
+    for (int i=0; i<16; i++){
+        _block[i] = tempBlock[i];
+    }
 }
 
 void TetrisBlock::setAbsolutePosition(int x, int y)

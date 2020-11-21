@@ -1,19 +1,14 @@
-# Final Project for C++
+# Welcome to tetris!
 
-For the C++ course you will have to build a nice app/game on your own.
+## how to run
+```bash
+# first compile the app:
+make
 
-**DEADLINE: 4th of January.** Doesn't mean you should build the app in december. Final touches can be made then.
-
-All code should be placed inside this git project and be accompanied by a README and Makefile.
-
-Choose 1 of the assignment options and inform your teacher about your choice.
-
-## Option 1 - Tetris
-
-Build a console Tetris clone. Make sure the player's score is tracked in a scoreboard (save as json file for example).
-
-Extra's could be a 2-player game.
-
+# then run it
+make run
+```
+if that doesn't work, try "```mingw32-make```" instead of "```make```".
 
 ## General
 

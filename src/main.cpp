@@ -37,8 +37,14 @@ int main()
             updated = false;
             BlueRicky.up();
         }
+        if(GetKeyState(VK_SPACE) & 0x8000)
+        {
+            updated = false;
+            BlueRicky.rotate();
+        }
 
-        if (!updated) {
+        if (!updated) 
+        {
             graphics.ClearRect(1, 0, 10, 23);
             if (system("CLS")) system("clear");
 

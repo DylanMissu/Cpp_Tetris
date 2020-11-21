@@ -1,16 +1,19 @@
 #include "Graphics.h"
 
-Graphics::Graphics(const int width, const int height) {
+Graphics::Graphics(const int width, const int height) 
+{
     buffer = new std::string[width * height];
     gameWidth = width;
     gameHeight = height;
 }
 
-int Graphics::getWidth() {
+int Graphics::getWidth() 
+{
     return gameWidth;
 }
 
-int Graphics::getHeight() {
+int Graphics::getHeight() 
+{
     return gameHeight;
 }
 
@@ -37,7 +40,8 @@ void Graphics::DrawPixel(int x, int y, int colorCode)
     buffer[x + gameWidth*y] = colors[colorCode] + "\xDB\xDB" + colors[0];
 }
 
-void Graphics::ClearRect(int x, int y, int width, int height) {
+void Graphics::ClearRect(int x, int y, int width, int height) 
+{
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
