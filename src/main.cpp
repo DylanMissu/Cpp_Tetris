@@ -43,6 +43,13 @@ int main()
             BlueRicky.rotate();
         }
 
+        if(getMillis() > 500)
+        {
+            updated = false;
+            resetMillis();
+            BlueRicky.down();
+        }
+
         if (!updated) 
         {
             graphics.ClearRect(1, 0, 10, 23);
