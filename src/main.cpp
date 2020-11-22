@@ -15,7 +15,7 @@ int main()
     UserInput input;
     Timer inputTimer;
     Graphics graphics(12, 24);
-    TetrisBlock BlueRicky(shapes.blueRicky);
+    TetrisBlock BlueRicky(shapes.hero);
     graphics.DrawGameBorder(12, 24);
 
     inputTimer.setState(false);
@@ -43,7 +43,7 @@ int main()
 
             cout <<  graphics.DrawBuffer() << endl;
 
-            Sleep(100);
+            Sleep(200);
         }
     }
     

@@ -31,19 +31,19 @@ void TetrisBlock::up()
 
 void TetrisBlock::rotate()
 {
-    int tempBlock[16] = {};
+    int rotatedBlock[16] = {};
 
     for (int i=0; i<4; i++)
     {
         for (int j=0; j<4; j++)
         {
             //https://stackoverflow.com/questions/20149783/rotating-a-2d-converted-1d-array-90-degrees-clockwise
-            tempBlock[(j) + 4*(i)] = _block[(i) + 4*(4 - 1 - j)];
+            rotatedBlock[(j) + 4*(i)] = _block[(i) + 4*(4 - 1 - j)];
         }
     }
 
     for (int i=0; i<16; i++){
-        _block[i] = tempBlock[i];
+        _block[i] = rotatedBlock[i];
     }
 }
 
