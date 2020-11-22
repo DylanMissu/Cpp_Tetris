@@ -17,7 +17,7 @@ int main()
     UserInput input;
     Timer gameTimer;
     Graphics graphics(12, 24);
-    TetrisBlock BlueRicky(shapes.hero);
+    TetrisBlock BlueRicky(shapes.teewave);
     graphics.DrawGameBorder(12, 24);
 
     gameTimer.setState(false);
@@ -36,13 +36,12 @@ int main()
 
         if (!gameTimer.getState()) 
         {
+            gameTimer.setState(true);
             graphics.ClearRect(1, 0, 10, 23);
 
-            gameTimer.setState(true);
             BlueRicky.show(graphics);
 
             console.drawToConsole(graphics);
-
             Sleep(100);
         }
     }

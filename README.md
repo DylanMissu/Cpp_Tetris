@@ -1,14 +1,16 @@
 # Welcome to tetris!
 
+## current progress
+
+[<img src="./Preview.png">](./Preview.png)
+
 ## how to run
 ```bash
-# first compile the app:
-make
-
-# then run it
 make run
 ```
-if that doesn't work, try "```mingw32-make```" instead of "```make```".
+if that doesn't work, try "```mingw32-make run```" instead of "```make run```".
+
+
 
 ## General
 
