@@ -26,6 +26,7 @@ BUILDDIR=bin
 OBJS := $(SRCDIR)/main.o \
 				$(LIBDIR)/Timer.o \
 				$(LIBDIR)/Graphics.o \
+				$(LIBDIR)/UserInput.o \
 				$(LIBDIR)/TetrisBlock.o
 
 all: makebuildir $(TARGET)

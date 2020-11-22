@@ -1,6 +1,7 @@
 #include <iostream>
 #include "lib/Timer.h"
 #include "lib/Graphics.h"
+#include "lib/UserInput.h"
 #include "lib/TetrisBlock.h"
 #include "lib/resources/Shapes.h"
 #include <Windows.h>
@@ -11,54 +12,33 @@ int main()
 {
     Timer timer;
     Shapes shapes;
+    UserInput input;
+    Timer inputTimer;
     Graphics graphics(12, 24);
+    TetrisBlock BlueRicky(shapes.blueRicky);
     graphics.DrawGameBorder(12, 24);
 
-    TetrisBlock BlueRicky(shapes.blueRicky);
-
-    bool updated = false;
+    inputTimer.setState(false);
 
     while(true) 
     {
-        if(GetKeyState(VK_LEFT) & 0x8000)
-        {
-            updated = false;
-            BlueRicky.left();
-        }
-        if(GetKeyState(VK_RIGHT) & 0x8000)
-        {
-            updated = false;
-            BlueRicky.right();
-        }
-        if(GetKeyState(VK_DOWN) & 0x8000)
-        {
-            updated = false;
-            BlueRicky.down();
-        }
-        if(GetKeyState(VK_UP) & 0x8000)
-        {
-            updated = false;
-            BlueRicky.up();
-        }
-        if(GetKeyState(VK_SPACE) & 0x8000)
-        {
-            updated = false;
-            BlueRicky.rotate();
-        }
+        bool updated = input.checkUserInput(&BlueRicky);
+        inputTimer.setState(!updated);
+
 
         if(timer.getElapsedMillis() > 500)
         {
-            updated = false;
+            inputTimer.setState(false);
             timer.resetTimer();
             BlueRicky.down();
         }
 
-        if (!updated) 
+        if (!inputTimer.getState()) 
         {
             graphics.ClearRect(1, 0, 10, 23);
             if (system("CLS")) system("clear");
 
-            updated = true;
+            inputTimer.setState(true);
             BlueRicky.show(graphics);
 
             cout <<  graphics.DrawBuffer() << endl;

@@ -4,6 +4,7 @@
 Timer::Timer()
 {
     millieSeconds = currentMillis();
+    currentState = true;
 }
 
 int Timer::currentMillis()
@@ -22,4 +23,14 @@ int Timer::getElapsedMillis()
 void Timer::resetTimer()
 {
     millieSeconds = currentMillis();
+}
+
+void Timer::setState(bool state)
+{
+    currentState = state;
+}
+
+bool Timer::getState()
+{
+    return currentState;
 }
