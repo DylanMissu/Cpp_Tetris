@@ -65,7 +65,7 @@ void TetrisBlock::show(Graphics graphics)
     {
         if(_block[i] != 0)
         {
-            graphics.DrawPixel(_x + i%4, _y + i/4, _block[i]);
+            graphics.DrawPixel(_x + i%4,  _y + i/4, _block[i]);
         }
     }
 }

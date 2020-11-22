@@ -37,8 +37,13 @@ bool Timer::getState()
 
 bool Timer::interval(int milliseconds)
 {
-    if (getElapsedMillis() > milliseconds) {
+    if (getElapsedMillis() > milliseconds)
+    {
         resetTimer();
         return true;
+    }
+    else
+    {
+        return false;
     }
 }

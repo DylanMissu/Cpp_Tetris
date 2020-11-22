@@ -1,5 +1,6 @@
 #include <iostream>
 #include "lib/Timer.h"
+#include "lib/Console.h"
 #include "lib/Graphics.h"
 #include "lib/UserInput.h"
 #include "lib/TetrisBlock.h"
@@ -12,38 +13,37 @@ int main()
 {
     Timer timer;
     Shapes shapes;
+    Console console;
     UserInput input;
-    Timer inputTimer;
+    Timer gameTimer;
     Graphics graphics(12, 24);
     TetrisBlock BlueRicky(shapes.hero);
     graphics.DrawGameBorder(12, 24);
 
-    inputTimer.setState(false);
+    gameTimer.setState(false);
 
     while(true) 
     {
         bool updated = input.checkUserInput(&BlueRicky);
-        inputTimer.setState(!updated);
+        gameTimer.setState(!updated);
 
-
-        if(timer.getElapsedMillis() > 500)
+        
+        if(timer.interval(1000))
         {
-            inputTimer.setState(false);
-            timer.resetTimer();
+            gameTimer.setState(false);
             BlueRicky.down();
         }
 
-        if (!inputTimer.getState()) 
+        if (!gameTimer.getState()) 
         {
             graphics.ClearRect(1, 0, 10, 23);
-            if (system("CLS")) system("clear");
 
-            inputTimer.setState(true);
+            gameTimer.setState(true);
             BlueRicky.show(graphics);
 
-            cout <<  graphics.DrawBuffer() << endl;
+            console.drawToConsole(graphics);
 
-            Sleep(200);
+            Sleep(100);
         }
     }
     

@@ -25,6 +25,7 @@ BUILDDIR=bin
 
 OBJS := $(SRCDIR)/main.o \
 				$(LIBDIR)/Timer.o \
+				$(LIBDIR)/Console.o \
 				$(LIBDIR)/Graphics.o \
 				$(LIBDIR)/UserInput.o \
 				$(LIBDIR)/TetrisBlock.o

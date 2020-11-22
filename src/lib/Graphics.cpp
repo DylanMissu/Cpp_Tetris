@@ -2,17 +2,17 @@
 
 Graphics::Graphics(const int width, const int height) 
 {
-    buffer = new std::string[width * height];
+    buffer = new int[width * height];
     gameWidth = width;
     gameHeight = height;
 }
 
-int Graphics::getWidth() 
+const int Graphics::getWidth() 
 {
     return gameWidth;
 }
 
-int Graphics::getHeight() 
+const int Graphics::getHeight() 
 {
     return gameHeight;
 }
@@ -25,11 +25,11 @@ void Graphics::DrawGameBorder(int width, int height)
         {
             if (j == 0 || j == width - 1 || i == height - 1)
             {
-                buffer[j + gameWidth*i] = "\xDB\xDB";
+                buffer[j + gameWidth*i] = 1;
             }
             else
             {
-                buffer[j + gameWidth*i] = "  ";
+                buffer[j + gameWidth*i] = 0;
             }
         }
     }
@@ -37,7 +37,7 @@ void Graphics::DrawGameBorder(int width, int height)
 
 void Graphics::DrawPixel(int x, int y, int colorCode)
 {
-    buffer[x + gameWidth*y] = colors[colorCode] + "\xDB\xDB" + colors[0];
+    buffer[x + gameWidth*y] = colorCode;
 }
 
 void Graphics::ClearRect(int x, int y, int width, int height) 
@@ -46,23 +46,12 @@ void Graphics::ClearRect(int x, int y, int width, int height)
     {
         for (int j = 0; j < width; j++)
         {
-            buffer[(y + i)*gameWidth + (x + j)] = "  ";
+            buffer[(y + i)*gameWidth + (x + j)] = 0;
         }
     }
 }
 
-std::string Graphics::DrawBuffer() 
+int *Graphics::getBuffer() 
 {
-    std::string output = "";
-    for (int i = 0; i < gameHeight; i++)
-    {
-        for (int j = 0; j < gameWidth; j++)
-        {
-            output += buffer[j + gameWidth*i];
-        }
-        output += "\n\r";
-    }
-
-    //delete[]buffer;
-    return output;
+    return buffer;
 }
