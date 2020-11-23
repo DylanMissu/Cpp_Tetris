@@ -21,6 +21,7 @@ class Graphics {
     private:
         void drawGameBorder();
         bool hasFullLineAt(int y);
+        void removeLine(int y);
 
     private:
         int *buffer;

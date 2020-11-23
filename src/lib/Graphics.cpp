@@ -68,29 +68,34 @@ int Graphics::removeFullLines()
         if (hasFullLineAt(i))
         {
             numCleared += 1;
-            for (int j = 0; j < gameWidth * gameHeight; j++)
-            {
-                buffer[j] = bakedBuffer[j];
-            }
-
-            for (int j = 0; j < gameWidth * gameHeight; j++)
-            {
-                int x = j%gameWidth;
-                int y = j/gameWidth;
-
-                if (y <= i)
-                {
-                    bakedBuffer[x + gameWidth*(y + 1)] = buffer[j];
-                }
-                else
-                {
-                    bakedBuffer[x + gameWidth*y] = buffer[j];
-                }
-            }
+            removeLine(i);
         }
     }
     clearAll();
     return numCleared;
+}
+
+void Graphics::removeLine(int lineY)
+{
+    for (int j = 0; j < gameWidth * gameHeight; j++)
+    {
+        buffer[j] = bakedBuffer[j];
+    }
+
+    for (int j = 0; j < gameWidth * gameHeight; j++)
+    {
+        int x = j%gameWidth;
+        int y = j/gameWidth;
+
+        if (y <= lineY)
+        {
+            bakedBuffer[x + gameWidth*(y + 1)] = buffer[j];
+        }
+        else
+        {
+            bakedBuffer[x + gameWidth*y] = buffer[j];
+        }
+    }
 }
 
 void Graphics::drawPixel(int x, int y, int colorCode)

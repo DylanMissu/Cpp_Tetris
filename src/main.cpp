@@ -28,7 +28,7 @@ int main()
         bool updated = input.checkUserInput(&tetrisBlock);
         gameTimer.setState(!updated);
 
-        if(timer.interval(500/(numCleared/4+1) + 50))
+        if(timer.interval(500/(numCleared/8+1) + 50))
         {
             gameTimer.setState(false);
             tetrisBlock.down();
@@ -44,34 +44,8 @@ int main()
 
             console.drawToConsole(graphics);
             cout << "rows cleared: " << numCleared << endl;
+            cout << "delay: " << (double)(500/(numCleared/8.0+1) + 50) << endl;
         }
     }
     
 }
-
-/* 
-██                    ██
-██                    ██
-██                    ██
-██                    ██
-██                    ██
-██                    ██
-██                    ██
-██                    ██
-██                    ██
-██                    ██
-██                    ██
-██                    ██
-██                    ██
-██                    ██
-██                    ██
-██                    ██
-██  ████              ██
-██    ██              ██
-██    ██              ██
-██                    ██
-██              ██    ██
-██████    ██  ██████  ██
-██████  ████████████████
-████████████████████████
-*/

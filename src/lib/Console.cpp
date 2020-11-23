@@ -13,21 +13,36 @@ void Console::drawToConsole(Graphics graphics)
     {
         for (int j = 0; j < width; j++)
         {
-            if (buffer[j + width*i] != 0)
+            int pixelInt = combineIntOR(buffer[j + width*i], bakedBuffer[j + width*i]);
+
+            if (pixelInt != 0)
             {
-                output += colors[buffer[j + width*i]] + "\xDB\xDB" + colors[0];
-            }
-            else if (bakedBuffer[j + width*i] != 0)
-            {
-                output += colors[bakedBuffer[j + width*i]] + "\xDB\xDB" + colors[0];
+                output += colors[pixelInt] + "\xDB\xDB" + colors[0];
             }
             else
             {
-                 output += "  ";
+                output += "  ";
             }
         }
         output += "\n\r";
     }
+
     if (system("CLS")) system("clear");
     std::cout << output.c_str() << std::endl;
+}
+
+int Console::combineIntOR(int a, int b)
+{
+    if (a != 0)
+    {
+        return a;
+    }
+    else if (b != 0)
+    {
+        return b;
+    }
+    else
+    {
+        return 0;
+    }
 }
