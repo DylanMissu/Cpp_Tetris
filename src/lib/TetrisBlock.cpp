@@ -1,7 +1,8 @@
 #include "TetrisBlock.h"
 
-TetrisBlock::TetrisBlock(const int *block) 
+TetrisBlock::TetrisBlock(const int *block, Graphics *thisgraphics)
 {
+    graphics = thisgraphics;
     for (int i=0; i<16; i++) 
     {
         _block[i] = block[i];
@@ -10,23 +11,26 @@ TetrisBlock::TetrisBlock(const int *block)
 
 void TetrisBlock::left() 
 {
-    _x -= 1;
+    if (!stopLeft)
+    {
+        _x -= 1;
+    }
 }
 
 void TetrisBlock::right() 
 {
-    _x += 1;
+    if (!stopRight)
+    {
+        _x += 1;
+    }
 }
 
 void TetrisBlock::down() 
 {
-    _y += 1;
-}
-
-//temporary for testing
-void TetrisBlock::up() 
-{
-    _y -= 1;
+    if (!stopDown)
+    {
+        _y += 1;
+    }
 }
 
 void TetrisBlock::rotate()
@@ -59,13 +63,68 @@ void TetrisBlock::setRelativePosition(int x, int y)
     _y += y;
 }
 
-void TetrisBlock::show(Graphics graphics) 
+int TetrisBlock::getMaxX()
+{
+    int max = 0;
+    for (int i=0; i<16; i++)
+    {
+        if (_block[i] != 0)
+        {
+            if (_x + i%4 > max)
+            {
+                max = _x + i%4;
+            }
+        }
+    }
+
+    return max;
+}
+
+int TetrisBlock::getMinX()
+{
+    int min = 16;
+    for (int i=0; i<16; i++)
+    {
+        if (_block[i] != 0)
+        {
+            if (_x + i%4 < min)
+            {
+                min = _x + i%4;
+            }
+        }
+    }
+
+    return min;
+}
+
+int TetrisBlock::getMaxY()
+{
+    int max = 0;
+    for (int i=0; i<16; i++)
+    {
+        if (_block[i] != 0)
+        {
+            if (_y + i/4 > max)
+            {
+                max = _y + i/4;
+            }
+        }
+    }
+
+    return max;
+}
+
+void TetrisBlock::show() 
 {
     for (int i=0; i<16; i++) 
     {
         if(_block[i] != 0)
         {
-            graphics.DrawPixel(_x + i%4,  _y + i/4, _block[i]);
+            graphics->DrawPixel(_x + i%4,  _y + i/4, _block[i]);
+
+            stopDown = graphics->hasBlockAt((_x + i%4), getMaxY() + 1);
+            stopLeft = graphics->hasBlockAt(getMinX() - 1, (_y + i/4));
+            stopRight = graphics->hasBlockAt(getMaxX() + 1, (_y + i/4));
         }
     }
 }

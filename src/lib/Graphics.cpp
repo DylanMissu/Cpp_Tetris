@@ -35,6 +35,11 @@ void Graphics::DrawGameBorder(int width, int height)
     }
 }
 
+bool Graphics::hasBlockAt(int x, int y)
+{
+    return (bool)(buffer[x + gameWidth*y] != 0);
+}
+
 void Graphics::DrawPixel(int x, int y, int colorCode)
 {
     buffer[x + gameWidth*y] = colorCode;

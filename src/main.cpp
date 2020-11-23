@@ -17,9 +17,9 @@ int main()
     UserInput input;
     Timer gameTimer;
     Graphics graphics(12, 24);
-    TetrisBlock BlueRicky(shapes.teewave);
+    TetrisBlock BlueRicky(shapes.teewave, &graphics);
     graphics.DrawGameBorder(12, 24);
-
+    
     gameTimer.setState(false);
 
     while(true) 
@@ -39,9 +39,12 @@ int main()
             gameTimer.setState(true);
             graphics.ClearRect(1, 0, 10, 23);
 
-            BlueRicky.show(graphics);
+            BlueRicky.show();
 
             console.drawToConsole(graphics);
+            cout << BlueRicky.getMaxY() << endl;
+            cout << BlueRicky.getMaxX() << endl;
+            cout << BlueRicky.getMinX() << endl;
             Sleep(100);
         }
     }

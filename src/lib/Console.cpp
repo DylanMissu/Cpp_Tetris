@@ -20,7 +20,6 @@ void Console::drawToConsole(Graphics graphics)
             {
                  output += "  ";
             }
-            
         }
         output += "\n\r";
     }
