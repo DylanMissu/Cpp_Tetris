@@ -116,15 +116,20 @@ int TetrisBlock::getMaxY()
 
 void TetrisBlock::show() 
 {
+    stopDown = false;
+    stopLeft = false;
+    stopRight = false;
     for (int i=0; i<16; i++) 
     {
         if(_block[i] != 0)
         {
-            graphics->DrawPixel(_x + i%4,  _y + i/4, _block[i]);
+            int blockX = (_x + i%4);
+            int blockY = (_y + i/4);
+            stopDown += graphics->hasBlockAt(blockX, blockY + 1);
+            stopLeft += graphics->hasBlockAt(blockX - 1, blockY);
+            stopRight += graphics->hasBlockAt(blockX + 1, blockY);
 
-            stopDown = graphics->hasBlockAt((_x + i%4), getMaxY() + 1);
-            stopLeft = graphics->hasBlockAt(getMinX() - 1, (_y + i/4));
-            stopRight = graphics->hasBlockAt(getMaxX() + 1, (_y + i/4));
+            graphics->DrawPixel(blockX,  blockY, _block[i]);
         }
     }
 }

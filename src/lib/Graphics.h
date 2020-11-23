@@ -17,6 +17,7 @@ class Graphics {
 
     private:
         int *buffer;
+        int *bakedBuffer;
         int gameWidth;
         int gameHeight;
 
