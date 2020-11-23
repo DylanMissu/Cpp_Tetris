@@ -3,9 +3,11 @@
 Graphics::Graphics(const int width, const int height) 
 {
     buffer = new int[width * height];
+    tempBuffer = new int[width * height];
     bakedBuffer = new int[width * height];
     gameWidth = width;
     gameHeight = height;
+    drawGameBorder();
 }
 
 const int Graphics::getWidth() 
@@ -18,13 +20,13 @@ const int Graphics::getHeight()
     return gameHeight;
 }
 
-void Graphics::DrawGameBorder(int width, int height) 
+void Graphics::drawGameBorder() 
 {
-    for (int i = 0; i < height; i++)
+    for (int i = 0; i < gameHeight; i++)
     {
-        for (int j = 0; j < width; j++)
+        for (int j = 0; j < gameWidth; j++)
         {
-            if (j == 0 || j == width - 1 || i == height - 1)
+            if (j == 0 || j == gameWidth - 1 || i == gameHeight - 1)
             {
                 buffer[j + gameWidth*i] = 1;
                 bakedBuffer[j + gameWidth*i] = 1;
@@ -43,7 +45,51 @@ bool Graphics::hasBlockAt(int x, int y)
     return (bakedBuffer[x + gameWidth*y] != 0);
 }
 
-void Graphics::DrawPixel(int x, int y, int colorCode)
+bool Graphics::hasFullLineAt(int y)
+{
+    int blockCount = 0;
+    for (int i=0; i<gameWidth; i++)
+    {
+        int block = bakedBuffer[i + gameWidth*y];
+        if (block != 0 && block != 1)
+        {
+            blockCount += 1;
+        }
+    }
+
+    return (blockCount >= gameWidth-2);
+}
+
+void Graphics::removeFullLines()
+{
+    for (int i=0; i<gameHeight; i++)
+    {
+        if (hasFullLineAt(i))
+        {
+            for (int j = 0; j < gameWidth * gameHeight; j++)
+            {
+                buffer[j] = bakedBuffer[j];
+            }
+
+            for (int j = 0; j < gameWidth * gameHeight; j++)
+            {
+                int x = j%gameWidth;
+                int y = j/gameWidth;
+                if (y <= i)
+                {
+                    bakedBuffer[x + gameWidth*(y + 1)] = buffer[j];
+                }
+                else
+                {
+                    bakedBuffer[x + gameWidth*y] = buffer[j];
+                }
+            }
+        }
+    }
+    clearAll();
+}
+
+void Graphics::drawPixel(int x, int y, int colorCode)
 {
     buffer[x + gameWidth*y] = colorCode;
 }

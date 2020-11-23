@@ -16,9 +16,9 @@ int main()
     Timer gameTimer;
     Graphics graphics(12, 24);
     TetrisBlock tetrisBlock(&graphics);
+
     tetrisBlock.generateRandomBlock();
     tetrisBlock.setAbsolutePosition(graphics.getWidth()/2 - 2, 0);
-    graphics.DrawGameBorder(graphics.getWidth(), graphics.getHeight());
     
     gameTimer.setState(false);
 
@@ -31,6 +31,7 @@ int main()
         {
             gameTimer.setState(false);
             tetrisBlock.down();
+            graphics.removeFullLines();
         }
 
         if (!gameTimer.getState()) 
@@ -41,7 +42,6 @@ int main()
             tetrisBlock.show();
 
             console.drawToConsole(graphics);
-            cout << rand() % 7 << endl;
             Sleep(100);
         }
     }

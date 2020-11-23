@@ -185,11 +185,12 @@ void TetrisBlock::show()
         {
             int blockX = (blockx + i%4);
             int blockY = (blocky + i/4);
+
             stopDown += graphics->hasBlockAt(blockX, blockY + 1);
             stopLeft += graphics->hasBlockAt(blockX - 1, blockY);
             stopRight += graphics->hasBlockAt(blockX + 1, blockY);
 
-            graphics->DrawPixel(blockX,  blockY, _block[i]);
+            graphics->drawPixel(blockX,  blockY, _block[i]);
         }
     }
 
