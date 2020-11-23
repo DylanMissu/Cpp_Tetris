@@ -1,4 +1,5 @@
 #include "TetrisBlock.h"
+#include "resources/Shapes.h"
 
 TetrisBlock::TetrisBlock(const int *block, Graphics *thisgraphics)
 {
@@ -9,11 +10,70 @@ TetrisBlock::TetrisBlock(const int *block, Graphics *thisgraphics)
     }
 }
 
+TetrisBlock::TetrisBlock(Graphics *thisgraphics)
+{
+    graphics = thisgraphics;
+}
+
+void TetrisBlock::generateRandomBlock()
+{
+    Shapes shapes;
+
+    blockx = 0;
+    blocky = 0;
+
+    switch (std::rand() % 7)
+    {
+    case 0:
+        for (int i=0; i<16; i++) 
+        {
+            _block[i] = shapes.blueRicky[i];
+        }
+        break;
+    case 1:
+        for (int i=0; i<16; i++) 
+        {
+            _block[i] = shapes.clevelandZ[i];
+        }
+        break;
+    case 2:
+        for (int i=0; i<16; i++) 
+        {
+            _block[i] = shapes.hero[i];
+        }
+        break;
+    case 3:
+        for (int i=0; i<16; i++) 
+        {
+            _block[i] = shapes.orangeRicky[i];
+        }
+        break;
+    case 4:
+        for (int i=0; i<16; i++) 
+        {
+            _block[i] = shapes.rhodeIsland[i];
+        }
+        break;
+    case 5:
+        for (int i=0; i<16; i++) 
+        {
+            _block[i] = shapes.smashBoy[i];
+        }
+        break;
+    default:
+        for (int i=0; i<16; i++) 
+        {
+            _block[i] = shapes.teewave[i];
+        }
+        break;
+    }
+}
+
 void TetrisBlock::left() 
 {
     if (!stopLeft)
     {
-        _x -= 1;
+        blockx -= 1;
     }
 }
 
@@ -21,7 +81,7 @@ void TetrisBlock::right()
 {
     if (!stopRight)
     {
-        _x += 1;
+        blockx += 1;
     }
 }
 
@@ -29,7 +89,7 @@ void TetrisBlock::down()
 {
     if (!stopDown)
     {
-        _y += 1;
+        blocky += 1;
     }
 }
 
@@ -53,14 +113,14 @@ void TetrisBlock::rotate()
 
 void TetrisBlock::setAbsolutePosition(int x, int y)
 {
-    _x = x;
-    _y = y;
+    blockx = x;
+    blocky = y;
 }
 
 void TetrisBlock::setRelativePosition(int x, int y)
 {
-    _x += x;
-    _y += y;
+    blockx += x;
+    blocky += y;
 }
 
 int TetrisBlock::getMaxX()
@@ -70,9 +130,9 @@ int TetrisBlock::getMaxX()
     {
         if (_block[i] != 0)
         {
-            if (_x + i%4 > max)
+            if (blockx + i%4 > max)
             {
-                max = _x + i%4;
+                max = blockx + i%4;
             }
         }
     }
@@ -87,9 +147,9 @@ int TetrisBlock::getMinX()
     {
         if (_block[i] != 0)
         {
-            if (_x + i%4 < min)
+            if (blockx + i%4 < min)
             {
-                min = _x + i%4;
+                min = blockx + i%4;
             }
         }
     }
@@ -104,9 +164,9 @@ int TetrisBlock::getMaxY()
     {
         if (_block[i] != 0)
         {
-            if (_y + i/4 > max)
+            if (blocky + i/4 > max)
             {
-                max = _y + i/4;
+                max = blocky + i/4;
             }
         }
     }
@@ -123,8 +183,8 @@ void TetrisBlock::show()
     {
         if(_block[i] != 0)
         {
-            int blockX = (_x + i%4);
-            int blockY = (_y + i/4);
+            int blockX = (blockx + i%4);
+            int blockY = (blocky + i/4);
             stopDown += graphics->hasBlockAt(blockX, blockY + 1);
             stopLeft += graphics->hasBlockAt(blockX - 1, blockY);
             stopRight += graphics->hasBlockAt(blockX + 1, blockY);
@@ -136,5 +196,7 @@ void TetrisBlock::show()
     if (stopDown)
     {
         graphics->bake();
+        generateRandomBlock();
+        setAbsolutePosition(graphics->getWidth()/2 - 2, 0);
     }
 }

@@ -5,9 +5,11 @@
 class TetrisBlock {
     public:
         TetrisBlock(const int *block, Graphics *graphics);
+        TetrisBlock(Graphics *graphics);
         void show();
         void setAbsolutePosition(int x, int y);
         void setRelativePosition(int x, int y);
+        void generateRandomBlock();
 
     public:
         void left();
@@ -22,8 +24,8 @@ class TetrisBlock {
 
     private:
         int _block[16];
-        int _y = 0;
-        int _x = 0;
+        int blocky = 0;
+        int blockx = 0;
         Graphics *graphics;
 
     private:

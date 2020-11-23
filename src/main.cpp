@@ -4,7 +4,6 @@
 #include "lib/Graphics.h"
 #include "lib/UserInput.h"
 #include "lib/TetrisBlock.h"
-#include "lib/resources/Shapes.h"
 #include <Windows.h>
 
 using namespace std;
@@ -12,26 +11,26 @@ using namespace std;
 int main()
 {
     Timer timer;
-    Shapes shapes;
     Console console;
     UserInput input;
     Timer gameTimer;
     Graphics graphics(12, 24);
-    TetrisBlock BlueRicky(shapes.teewave, &graphics);
-    BlueRicky.setAbsolutePosition(graphics.getWidth()/2 - 2, 0);
+    TetrisBlock tetrisBlock(&graphics);
+    tetrisBlock.generateRandomBlock();
+    tetrisBlock.setAbsolutePosition(graphics.getWidth()/2 - 2, 0);
     graphics.DrawGameBorder(graphics.getWidth(), graphics.getHeight());
     
     gameTimer.setState(false);
 
     while(true) 
     {
-        bool updated = input.checkUserInput(&BlueRicky);
+        bool updated = input.checkUserInput(&tetrisBlock);
         gameTimer.setState(!updated);
 
         if(timer.interval(1000))
         {
             gameTimer.setState(false);
-            BlueRicky.down();
+            tetrisBlock.down();
         }
 
         if (!gameTimer.getState()) 
@@ -39,9 +38,10 @@ int main()
             gameTimer.setState(true);
             graphics.clearAll();
 
-            BlueRicky.show();
+            tetrisBlock.show();
 
             console.drawToConsole(graphics);
+            cout << rand() % 7 << endl;
             Sleep(100);
         }
     }
