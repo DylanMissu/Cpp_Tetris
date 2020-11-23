@@ -60,12 +60,14 @@ bool Graphics::hasFullLineAt(int y)
     return (blockCount >= gameWidth-2);
 }
 
-void Graphics::removeFullLines()
+int Graphics::removeFullLines()
 {
+    int numCleared = 0;
     for (int i=0; i<gameHeight; i++)
     {
         if (hasFullLineAt(i))
         {
+            numCleared += 1;
             for (int j = 0; j < gameWidth * gameHeight; j++)
             {
                 buffer[j] = bakedBuffer[j];
@@ -75,6 +77,7 @@ void Graphics::removeFullLines()
             {
                 int x = j%gameWidth;
                 int y = j/gameWidth;
+
                 if (y <= i)
                 {
                     bakedBuffer[x + gameWidth*(y + 1)] = buffer[j];
@@ -87,6 +90,7 @@ void Graphics::removeFullLines()
         }
     }
     clearAll();
+    return numCleared;
 }
 
 void Graphics::drawPixel(int x, int y, int colorCode)

@@ -10,6 +10,7 @@ using namespace std;
 
 int main()
 {
+    int numCleared = 0;
     Timer timer;
     Console console;
     UserInput input;
@@ -27,11 +28,11 @@ int main()
         bool updated = input.checkUserInput(&tetrisBlock);
         gameTimer.setState(!updated);
 
-        if(timer.interval(1000))
+        if(timer.interval(500/(numCleared/4+1) + 50))
         {
             gameTimer.setState(false);
             tetrisBlock.down();
-            graphics.removeFullLines();
+            numCleared += graphics.removeFullLines();
         }
 
         if (!gameTimer.getState()) 
@@ -42,8 +43,35 @@ int main()
             tetrisBlock.show();
 
             console.drawToConsole(graphics);
-            Sleep(100);
+            cout << "rows cleared: " << numCleared << endl;
         }
     }
     
 }
+
+/* 
+██                    ██
+██                    ██
+██                    ██
+██                    ██
+██                    ██
+██                    ██
+██                    ██
+██                    ██
+██                    ██
+██                    ██
+██                    ██
+██                    ██
+██                    ██
+██                    ██
+██                    ██
+██                    ██
+██  ████              ██
+██    ██              ██
+██    ██              ██
+██                    ██
+██              ██    ██
+██████    ██  ██████  ██
+██████  ████████████████
+████████████████████████
+*/

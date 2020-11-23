@@ -7,7 +7,7 @@ class Graphics {
         Graphics(const int width, const int height);
         void clearRect(int x, int y, int width, int height);
         void drawPixel(int x, int y, int colorCode);
-        void removeFullLines();
+        int removeFullLines();
         const int getHeight();
         int *getBakedBuffer();
         const int getWidth();
