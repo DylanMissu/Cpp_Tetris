@@ -1,17 +1,9 @@
 #include "TetrisBlock.h"
 #include "resources/Shapes.h"
 
-TetrisBlock::TetrisBlock(const int *block, Graphics *thisgraphics)
-{
-    graphics = thisgraphics;
-    for (int i=0; i<16; i++) 
-    {
-        _block[i] = block[i];
-    }
-}
-
 TetrisBlock::TetrisBlock(Graphics *thisgraphics)
 {
+    //game = thisGame;
     graphics = thisgraphics;
 }
 
@@ -123,62 +115,12 @@ void TetrisBlock::setRelativePosition(int x, int y)
     blocky += y;
 }
 
-int TetrisBlock::getMaxX()
-{
-    int max = 0;
-    for (int i=0; i<16; i++)
-    {
-        if (_block[i] != 0)
-        {
-            if (blockx + i%4 > max)
-            {
-                max = blockx + i%4;
-            }
-        }
-    }
-
-    return max;
-}
-
-int TetrisBlock::getMinX()
-{
-    int min = 16;
-    for (int i=0; i<16; i++)
-    {
-        if (_block[i] != 0)
-        {
-            if (blockx + i%4 < min)
-            {
-                min = blockx + i%4;
-            }
-        }
-    }
-
-    return min;
-}
-
-int TetrisBlock::getMaxY()
-{
-    int max = 0;
-    for (int i=0; i<16; i++)
-    {
-        if (_block[i] != 0)
-        {
-            if (blocky + i/4 > max)
-            {
-                max = blocky + i/4;
-            }
-        }
-    }
-
-    return max;
-}
-
-void TetrisBlock::show() 
+bool TetrisBlock::show() 
 {
     stopDown = false;
     stopLeft = false;
     stopRight = false;
+    bool stopGame = false;
     for (int i=0; i<16; i++) 
     {
         if(_block[i] != 0)
@@ -196,8 +138,13 @@ void TetrisBlock::show()
 
     if (stopDown)
     {
+        if (blocky == 0){
+            stopGame = true;
+        }
         graphics->bake();
         generateRandomBlock();
         setAbsolutePosition(graphics->getWidth()/2 - 2, 0);
     }
+
+    return stopGame;
 }

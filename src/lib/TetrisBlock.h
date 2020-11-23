@@ -1,12 +1,12 @@
 #pragma once
 
 #include "Graphics.h"
+#include "Game.h"
 
 class TetrisBlock {
     public:
-        TetrisBlock(const int *block, Graphics *graphics);
         TetrisBlock(Graphics *graphics);
-        void show();
+        bool show();
         void setAbsolutePosition(int x, int y);
         void setRelativePosition(int x, int y);
         void generateRandomBlock();
@@ -27,6 +27,7 @@ class TetrisBlock {
         int blocky = 0;
         int blockx = 0;
         Graphics *graphics;
+        Game *game;
 
     private:
         bool stopDown = false;

@@ -1,10 +1,10 @@
 #include <iostream>
+#include "lib/Game.h"
 #include "lib/Timer.h"
 #include "lib/Console.h"
 #include "lib/Graphics.h"
 #include "lib/UserInput.h"
 #include "lib/TetrisBlock.h"
-#include <Windows.h>
 
 using namespace std;
 
@@ -23,12 +23,14 @@ int main()
     
     gameTimer.setState(false);
 
-    while(true) 
+    int endGame = false;
+
+    while(!endGame) 
     {
         bool updated = input.checkUserInput(&tetrisBlock);
         gameTimer.setState(!updated);
 
-        if(timer.interval(500/(numCleared/8+1) + 50))
+        if(timer.interval(500/(numCleared/8.0+1) + 50))
         {
             gameTimer.setState(false);
             tetrisBlock.down();
@@ -40,11 +42,16 @@ int main()
             gameTimer.setState(true);
             graphics.clearAll();
 
-            tetrisBlock.show();
+            endGame = tetrisBlock.show();
 
             console.drawToConsole(graphics);
             cout << "rows cleared: " << numCleared << endl;
             cout << "delay: " << (double)(500/(numCleared/8.0+1) + 50) << endl;
+        }
+
+        if (endGame)
+        {
+            cout << "\e[1;31m" << "GAME OVER" << "\e[0m" << endl;
         }
     }
     
