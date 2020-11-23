@@ -37,7 +37,7 @@ int main()
         if (!gameTimer.getState()) 
         {
             gameTimer.setState(true);
-            graphics.ClearRect(1, 0, 10, 23);
+            graphics.clearAll();
 
             BlueRicky.show();
 

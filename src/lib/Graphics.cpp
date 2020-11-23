@@ -48,13 +48,21 @@ void Graphics::DrawPixel(int x, int y, int colorCode)
     buffer[x + gameWidth*y] = colorCode;
 }
 
-void Graphics::ClearRect(int x, int y, int width, int height) 
+void Graphics::clearAll() 
 {
-    for (int i = 0; i < height; i++)
+    for (int i = 0; i < gameWidth * gameHeight; i++)
     {
-        for (int j = 0; j < width; j++)
+        buffer[i] = 0;
+    }
+}
+
+void Graphics::bake()
+{
+    for (int i=0; i<gameHeight*gameWidth; i++)
+    {
+        if (buffer[i] != 0)
         {
-            buffer[(y + i)*gameWidth + (x + j)] = 0;
+            bakedBuffer[i] = buffer[i];
         }
     }
 }
@@ -62,4 +70,9 @@ void Graphics::ClearRect(int x, int y, int width, int height)
 int *Graphics::getBuffer() 
 {
     return buffer;
+}
+
+int *Graphics::getBakedBuffer()
+{
+    return bakedBuffer;
 }

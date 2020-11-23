@@ -132,4 +132,9 @@ void TetrisBlock::show()
             graphics->DrawPixel(blockX,  blockY, _block[i]);
         }
     }
+
+    if (stopDown)
+    {
+        graphics->bake();
+    }
 }

@@ -10,7 +10,10 @@ class Graphics {
         void DrawGameBorder(int width, int height);
         const int getHeight();
         const int getWidth();
+        int *getBakedBuffer();
         int *getBuffer();
+        void clearAll();
+        void bake();
 
     public:
         bool hasBlockAt(int x, int y);

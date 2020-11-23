@@ -1,0 +1,43 @@
+Date : 2020-11-23 13:14:34
+Directory : d:\school\challenges-cpp-final-app-DylanMissu
+Total : 14 files,  497 codes, 18 comments, 92 blanks, all 607 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| C++      |         12 |        456 |          4 |         72 |        532 |
+| Makefile |          1 |         26 |         14 |         12 |         52 |
+| Markdown |          1 |         15 |          0 |          8 |         23 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                     | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                        |         14 |        497 |         18 |         92 |        607 |
+| src                                                                      |         12 |        456 |          4 |         72 |        532 |
+| src\lib                                                                  |         11 |        416 |          4 |         63 |        483 |
+| src\lib\resources                                                        |          1 |         47 |          0 |          2 |         49 |
++--------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                 | language | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| d:\school\challenges-cpp-final-app-DylanMissu\Makefile                   | Makefile |         26 |         14 |         12 |         52 |
+| d:\school\challenges-cpp-final-app-DylanMissu\README.md                  | Markdown |         15 |          0 |          8 |         23 |
+| d:\school\challenges-cpp-final-app-DylanMissu\src\lib\Console.cpp        | C++      |         26 |          0 |          3 |         29 |
+| d:\school\challenges-cpp-final-app-DylanMissu\src\lib\Console.h          | C++      |         12 |          0 |          3 |         15 |
+| d:\school\challenges-cpp-final-app-DylanMissu\src\lib\Graphics.cpp       | C++      |         57 |          0 |          8 |         65 |
+| d:\school\challenges-cpp-final-app-DylanMissu\src\lib\Graphics.h         | C++      |         19 |          0 |          5 |         24 |
+| d:\school\challenges-cpp-final-app-DylanMissu\src\lib\TetrisBlock.cpp    | C++      |        117 |          1 |         17 |        135 |
+| d:\school\challenges-cpp-final-app-DylanMissu\src\lib\TetrisBlock.h      | C++      |         27 |          1 |          6 |         34 |
+| d:\school\challenges-cpp-final-app-DylanMissu\src\lib\Timer.cpp          | C++      |         41 |          1 |          7 |         49 |
+| d:\school\challenges-cpp-final-app-DylanMissu\src\lib\Timer.h            | C++      |         16 |          0 |          3 |         19 |
+| d:\school\challenges-cpp-final-app-DylanMissu\src\lib\UserInput.cpp      | C++      |         40 |          1 |          7 |         48 |
+| d:\school\challenges-cpp-final-app-DylanMissu\src\lib\UserInput.h        | C++      |         14 |          0 |          2 |         16 |
+| d:\school\challenges-cpp-final-app-DylanMissu\src\lib\resources\Shapes.h | C++      |         47 |          0 |          2 |         49 |
+| d:\school\challenges-cpp-final-app-DylanMissu\src\main.cpp               | C++      |         40 |          0 |          9 |         49 |
+| Total                                                                    |          |        497 |         18 |         92 |        607 |
++--------------------------------------------------------------------------+----------+------------+------------+------------+------------+

@@ -19,7 +19,6 @@ class TetrisBlock {
         int getMaxX();
         int getMinX();
         int getMaxY();
-        //int getMinY();
 
     private:
         int _block[16];
