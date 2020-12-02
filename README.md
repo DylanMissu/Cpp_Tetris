@@ -2,7 +2,7 @@
 
 ## current progress
 
-[<img src="./Preview.png">](./Preview.png)
+[![video](https://img.youtube.com/vi/tNAmQq7JPvg/0.jpg)](https://www.youtube.com/watch?v=tNAmQq7JPvg)
 
 ## how to run
 ```bash
