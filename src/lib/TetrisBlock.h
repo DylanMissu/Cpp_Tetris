@@ -16,6 +16,7 @@ class TetrisBlock {
         void right();
         void down();
         void rotate();
+        void rotateHelper(int block[16]);
 
     public:
         int getMaxX();

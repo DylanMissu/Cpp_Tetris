@@ -94,12 +94,41 @@ void TetrisBlock::rotate()
         for (int j=0; j<4; j++)
         {
             //https://stackoverflow.com/questions/20149783/rotating-a-2d-converted-1d-array-90-degrees-clockwise
-            rotatedBlock[(j) + 4*(i)] = _block[(i) + 4*(4 - 1 - j)];
+            rotatedBlock[j + 4*i] = _block[i + 4*(4 - 1 - j)];
         }
     }
 
-    for (int i=0; i<16; i++){
-        _block[i] = rotatedBlock[i];
+    rotateHelper(rotatedBlock);
+}
+
+void TetrisBlock::rotateHelper(int block[16])
+{
+    bool collidingLeft = false;
+    bool collidingRight = false;
+
+    for (int i=0; i<16; i++)
+    {
+        if (graphics->hasBlockAt((i%4 + blockx) - 1, (i/4 + blocky)))
+        {
+            right();
+            rotateHelper(block);
+            collidingLeft = true;
+        }
+
+        if (graphics->hasBlockAt((i%4 + blockx) + 1, (i/4 + blocky)))
+        {
+            left();
+            rotateHelper(block);
+            collidingRight = true;
+        }
+    }
+
+    if (!(collidingLeft && collidingRight))
+    {
+        for (int i=0; i<16; i++)
+        {
+            _block[i] = block[i];
+        }
     }
 }
 

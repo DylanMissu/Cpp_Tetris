@@ -15,7 +15,7 @@ int main()
     Console console;
     UserInput input;
     Timer gameTimer;
-    Graphics graphics(12, 24);
+    Graphics graphics(12, 22);
     TetrisBlock tetrisBlock(&graphics);
 
     tetrisBlock.generateRandomBlock();
@@ -30,7 +30,7 @@ int main()
         bool updated = input.checkUserInput(&tetrisBlock);
         gameTimer.setState(!updated);
 
-        if(timer.interval(500/(numCleared/8.0+1) + 50))
+        if(timer.interval(500/(numCleared/16.0+1) + 100))
         {
             gameTimer.setState(false);
             tetrisBlock.down();
@@ -46,7 +46,7 @@ int main()
 
             console.drawToConsole(graphics);
             cout << "rows cleared: " << numCleared << endl;
-            cout << "delay: " << (double)(500/(numCleared/8.0+1) + 50) << endl;
+            cout << "delay: " << (double)(500/(numCleared/16.0+1) + 100) << endl;
         }
 
         if (endGame)
