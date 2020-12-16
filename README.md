@@ -6,9 +6,8 @@
 
 ## how to run
 ```bash
-make run
+mingw32-make run
 ```
-if that doesn't work, try "```mingw32-make run```" instead of "```make run```".
 
 
 
