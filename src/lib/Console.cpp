@@ -27,8 +27,24 @@ void Console::drawToConsole(Graphics graphics)
         output += "\n\r";
     }
 
-    if (system("CLS")) system("clear");
+    clear();
     std::cout << output.c_str() << std::endl;
+}
+
+void Console::clear()
+{
+    if (system("CLS")) system("clear");
+}
+
+void Console::askUserName(User user)
+{
+    std::string username;
+    clear();
+    std::cout << "Welcome!" << std::endl;
+    std::cout << "What is your username?" << std::endl;
+    std::cin >> username;
+
+    user.setUserName(username);
 }
 
 int Console::combineIntOR(int a, int b)

@@ -24,6 +24,7 @@ LIBDIR=$(SRCDIR)/lib
 BUILDDIR=bin
 
 OBJS := $(SRCDIR)/main.o \
+				$(LIBDIR)/User.o \
 				$(LIBDIR)/Timer.o \
 				$(LIBDIR)/Console.o \
 				$(LIBDIR)/Graphics.o \

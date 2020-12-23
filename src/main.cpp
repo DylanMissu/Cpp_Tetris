@@ -12,6 +12,7 @@ int main()
 {
     int numCleared = 0;
     Timer timer;
+    User user;
     Console console;
     UserInput input;
     Timer gameTimer;
@@ -24,6 +25,8 @@ int main()
     gameTimer.setState(false);
 
     int endGame = false;
+
+    console.askUserName(user);
 
     while(!endGame) 
     {

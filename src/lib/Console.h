@@ -1,11 +1,14 @@
 #pragma once
 
+#include "User.h"
 #include "Graphics.h"
 
 class Console
 {
     public:
         void drawToConsole(Graphics Graphics);
+        void askUserName(User user);
+        void clear();
     
     private:
         const std::string colors[9] = {
