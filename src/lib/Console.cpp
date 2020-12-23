@@ -1,12 +1,12 @@
 #include "Console.h"
 #include <iostream>
 
-void Console::drawToConsole(Graphics *graphics)
+void Console::drawToConsole(Graphics graphics)
 {
-    const int width = graphics->getWidth();
-    const int height = graphics->getHeight();
-    const int *buffer = graphics->getBuffer();
-    const int *bakedBuffer = graphics->getBakedBuffer();
+    const int width = graphics.getWidth();
+    const int height = graphics.getHeight();
+    const int *buffer = graphics.getBuffer();
+    const int *bakedBuffer = graphics.getBakedBuffer();
 
     std::string output = "";
     for (int i = 0; i < height; i++)
@@ -36,7 +36,7 @@ void Console::clear()
     if (system("CLS")) system("clear");
 }
 
-void Console::askUserName(User *user)
+void Console::askUserName(User user)
 {
     std::string username;
     clear();
@@ -44,7 +44,7 @@ void Console::askUserName(User *user)
     std::cout << "Enter your username to play!" << std::endl;
     std::cin >> username;
 
-    user->setUserName(username);
+    user.setUserName(username);
 }
 
 int Console::combineIntOR(int a, int b)

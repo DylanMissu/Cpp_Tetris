@@ -1,48 +1,48 @@
 #include "Game.h"
 
-Game::Game(const int width, const int height, TetrisBlock *block, Timer *gTimer, Console *con, User *usr, UserInput *uInput, Timer *tim, Graphics *graph)
+Game::Game(const int width, const int height)
+            :graphics(width, height), 
+            tetrisBlock(&graphics), 
+            input(&tetrisBlock)
 {
-    tetrisBlock = block;
-    gameTimer = gTimer;
-    userInput = uInput;
-    graphics = graph;
-    console = con;
-    timer = tim;
-    user = usr;
 
-    gameHasEnded = false;
-
-    tetrisBlock->generateRandomBlock();
+    tetrisBlock.generateRandomBlock();
     
-    gameTimer->setState(false);
+    gameTimer.setState(false);
 
-    int gameHasEnded = false;
-
-    console->askUserName(user);
+    console.askUserName(user);
 }
 
 void Game::gameStep()
 {
-    //bool updated = input->checkUserInput();
-    //gameTimer->setState(!updated);
+    bool updated = input.checkUserInput();
+    gameTimer.setState(!updated);
 
-    if(timer->interval(500/(numCleared/16.0+1) + 100))
+    if(timer.interval(500/(numCleared/16.0+1) + 100))
     {
-        gameTimer->setState(false);
-        tetrisBlock->down();
-        numCleared += graphics->removeFullLines();
+        gameTimer.setState(false);
+        tetrisBlock.down();
+        numCleared += graphics.removeFullLines();
     }
 
-    if (!gameTimer->getState()) 
+    if (!gameTimer.getState()) 
     {
-        gameTimer->setState(true);
-        graphics->clearAll();
+        gameTimer.setState(true);
+        graphics.clearAll();
 
-        gameHasEnded = tetrisBlock->show();
+        gameHasEnded = tetrisBlock.show();
 
-        console->drawToConsole(graphics);
+        console.drawToConsole(graphics);
         std::cout << "Rows cleared: " << numCleared << std::endl;
-        std::cout << "User: " << user->getUserName() << std::endl;
+        std::cout << "User: " << user.getUserName() << std::endl;
+    }
+
+    if (gameHasEnded)
+    {
+        console.clear();
+        std::cout << "\e[1;31m" << "GAME OVER" << "\e[0m" << std::endl;
+        std::cout << "Well done " << user.getUserName() << "!" << std::endl;
+        std::cout << "You cleared " << numCleared << " rows!" << std::endl;
     }
 }
 

@@ -12,20 +12,19 @@
 class Game
 {
     public:
-        Game(const int width, const int height, TetrisBlock *block, Timer *gTimer, Console *con, User *usr, UserInput *uInput, Timer *tim, Graphics *graph);
+        Game(const int width, const int height);
         void endGame();
         bool gameEnded();
         void gameStep();
 
     private:
-        User *user;
-        UserInput *input;
-        Console *console;
-        Timer *gameTimer;
-        Graphics *graphics;
-        UserInput *userInput;
-        Timer *timer;
-        TetrisBlock *tetrisBlock;
+        User user;
+        Timer timer;
+        Console console;
+        Timer gameTimer;
+        Graphics graphics;
+        UserInput input;
+        TetrisBlock tetrisBlock;
         bool gameHasEnded = false;
         int numCleared = 0;
 

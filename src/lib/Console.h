@@ -7,8 +7,8 @@
 class Console
 {
     public:
-        void drawToConsole(Graphics *Graphics);
-        void askUserName(User *user);
+        void drawToConsole(Graphics Graphics);
+        void askUserName(User user);
         void clear();
     
     private:
