@@ -1,11 +1,12 @@
 #include "UserInput.h"
-#include "Windows.h"
 
-UserInput::UserInput(){
+UserInput::UserInput(TetrisBlock *tetrisBlock)
+{
+    block = tetrisBlock;
 }
 
 //http://www.cplusplus.com/forum/windows/182965/
-bool UserInput::checkUserInput(TetrisBlock *block) {
+bool UserInput::checkUserInput() {
     bool updated = false;
 
     if(GetAsyncKeyState(VK_LEFT) != 0)

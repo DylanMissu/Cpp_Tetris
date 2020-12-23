@@ -17,11 +17,11 @@ void Console::drawToConsole(Graphics graphics)
 
             if (pixelInt != 0)
             {
-                output += colors[pixelInt] + "\xDB\xDB" + colors[0];
+                output += colors[pixelInt] + pixelChar + colors[0];
             }
             else
             {
-                output += "  ";
+                output += paddingChar;
             }
         }
         output += "\n\r";

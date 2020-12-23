@@ -1,13 +1,15 @@
 #pragma once
 #include "TetrisBlock.h"
+#include "Windows.h"
 
 class UserInput
 {
     public:
-        UserInput();
-        bool checkUserInput(TetrisBlock *block);
+        UserInput(TetrisBlock *tetrisBlock);
+        bool checkUserInput();
 
     private:
+        TetrisBlock *block;
         bool leftPressed = false;
         bool rightPressed = false;
         bool upPressed = false;

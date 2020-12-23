@@ -3,10 +3,13 @@
 class Game
 {
     public:
-        Game();
+        Game(const int width, const int height);
         void endGame();
         bool gameEnded();
+        void gameStep();
 
     private:
         bool gameHasEnded = false;
+        int numCleared = 0;
+
 };

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Graphics.h"
-#include "Game.h"
 
 class TetrisBlock {
     public:
@@ -28,7 +27,6 @@ class TetrisBlock {
         int blocky = 0;
         int blockx = 0;
         Graphics *graphics;
-        Game *game;
 
     private:
         bool stopDown = false;
