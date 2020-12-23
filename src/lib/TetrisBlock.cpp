@@ -59,6 +59,8 @@ void TetrisBlock::generateRandomBlock()
         }
         break;
     }
+   
+    setAbsolutePosition(graphics->getWidth()/2 - 2, 0);
 }
 
 void TetrisBlock::left() 
@@ -157,6 +159,7 @@ bool TetrisBlock::show()
             int blockX = (blockx + i%4);
             int blockY = (blocky + i/4);
 
+            // check for collisions
             stopDown += graphics->hasBlockAt(blockX, blockY + 1);
             stopLeft += graphics->hasBlockAt(blockX - 1, blockY);
             stopRight += graphics->hasBlockAt(blockX + 1, blockY);
@@ -172,7 +175,6 @@ bool TetrisBlock::show()
         }
         graphics->bake();
         generateRandomBlock();
-        setAbsolutePosition(graphics->getWidth()/2 - 2, 0);
     }
 
     return stopGame;

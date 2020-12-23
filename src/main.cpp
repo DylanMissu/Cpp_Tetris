@@ -14,19 +14,14 @@ int main()
     int numCleared = 0;
 
     Timer timer;
+    User user;
     Console console;
     Timer gameTimer;
-    User user;
     Graphics graphics(12, 22);
     TetrisBlock tetrisBlock(&graphics);
     UserInput input(&tetrisBlock);
 
-    tetrisBlock.generateRandomBlock();
-    tetrisBlock.setAbsolutePosition(graphics.getWidth()/2 - 2, 0);
-    
-    gameTimer.setState(false);
-
-    console.askUserName(user);
+    Game game(12, 22, &tetrisBlock, &gameTimer, &console, &user, &input, &timer, &graphics);
 
     int endGame = false;
 
@@ -34,33 +29,15 @@ int main()
     {
         bool updated = input.checkUserInput();
         gameTimer.setState(!updated);
+        game.gameStep();
 
-        if(timer.interval(500/(numCleared/16.0+1) + 100))
-        {
-            gameTimer.setState(false);
-            tetrisBlock.down();
-            numCleared += graphics.removeFullLines();
-        }
-
-        if (!gameTimer.getState()) 
-        {
-            gameTimer.setState(true);
-            graphics.clearAll();
-
-            endGame = tetrisBlock.show();
-
-            console.drawToConsole(graphics);
-            cout << "rows cleared: " << numCleared << endl;
-            cout << "step delay: " << (double)(500/(numCleared/16.0+1) + 100) << endl;
-        }
-
-        if (endGame)
+        /*if (endGame)
         {
             console.clear();
             cout << "\e[1;31m" << "GAME OVER" << "\e[0m" << endl;
             cout << "Well done " << user.getUserName() << "!" << endl;
-            cout << "rows cleared: " << numCleared << endl;
-        }
+            cout << "You cleared " << numCleared << " rows!" << endl;
+        }*/
     }
     
 }

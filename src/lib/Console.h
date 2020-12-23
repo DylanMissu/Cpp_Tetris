@@ -1,13 +1,14 @@
 #pragma once
 
+#include <string>
 #include "User.h"
 #include "Graphics.h"
 
 class Console
 {
     public:
-        void drawToConsole(Graphics Graphics);
-        void askUserName(User user);
+        void drawToConsole(Graphics *Graphics);
+        void askUserName(User *user);
         void clear();
     
     private:

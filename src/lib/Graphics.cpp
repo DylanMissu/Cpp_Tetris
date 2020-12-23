@@ -77,11 +77,13 @@ int Graphics::removeFullLines()
 
 void Graphics::removeLine(int lineY)
 {
+    // unbake buffer
     for (int j = 0; j < gameWidth * gameHeight; j++)
     {
         buffer[j] = bakedBuffer[j];
     }
 
+    // move all blocks above given line one position downwards
     for (int j = 0; j < gameWidth * gameHeight; j++)
     {
         int x = j%gameWidth;

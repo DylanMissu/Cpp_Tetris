@@ -1,48 +1,49 @@
 #include "Game.h"
 
-Game::Game(const int width, const int height)  
-            //:graphics(width, height), tetrisBlock(graphics), input(tetrisBlock)
+Game::Game(const int width, const int height, TetrisBlock *block, Timer *gTimer, Console *con, User *usr, UserInput *uInput, Timer *tim, Graphics *graph)
 {
-    /*gameHasEnded = false;
+    tetrisBlock = block;
+    gameTimer = gTimer;
+    userInput = uInput;
+    graphics = graph;
+    console = con;
+    timer = tim;
+    user = usr;
 
-    tetrisBlock.generateRandomBlock();
-    tetrisBlock.setAbsolutePosition(graphics.getWidth()/2 - 2, 0);
+    gameHasEnded = false;
+
+    tetrisBlock->generateRandomBlock();
     
-    gameTimer.setState(false);
+    gameTimer->setState(false);
 
     int gameHasEnded = false;
 
-    console.askUserName(user);*/
+    console->askUserName(user);
 }
 
 void Game::gameStep()
 {
-    //bool updated = input.checkUserInput(&tetrisBlock);
-    //gameTimer.setState(!updated);
+    //bool updated = input->checkUserInput();
+    //gameTimer->setState(!updated);
 
-    /*if(timer.interval(500/(numCleared/16.0+1) + 100))
+    if(timer->interval(500/(numCleared/16.0+1) + 100))
     {
-        gameTimer.setState(false);
-        tetrisBlock.down();
-        numCleared += graphics.removeFullLines();
+        gameTimer->setState(false);
+        tetrisBlock->down();
+        numCleared += graphics->removeFullLines();
     }
 
-    if (!gameTimer.getState()) 
+    if (!gameTimer->getState()) 
     {
-        gameTimer.setState(true);
-        graphics.clearAll();
+        gameTimer->setState(true);
+        graphics->clearAll();
 
-        gameHasEnded = tetrisBlock.show();
+        gameHasEnded = tetrisBlock->show();
 
-        console.drawToConsole(graphics);
-        std::cout << "rows cleared: " << numCleared << std::endl;
-        std::cout << "delay: " << (double)(500/(numCleared/16.0+1) + 100) << std::endl;
+        console->drawToConsole(graphics);
+        std::cout << "Rows cleared: " << numCleared << std::endl;
+        std::cout << "User: " << user->getUserName() << std::endl;
     }
-
-    if (gameHasEnded)
-    {
-        std::cout << "\e[1;31m" << "GAME OVER" << "\e[0m" << std::endl;
-    }*/
 }
 
 void Game::endGame()
