@@ -25,7 +25,14 @@ class Game
         Graphics graphics;
         UserInput input;
         TetrisBlock tetrisBlock;
+
+    private:
         bool gameHasEnded = false;
         int numCleared = 0;
+
+    private:
+        void update();
+        void gameOver();
+        void checkInput();
 
 };

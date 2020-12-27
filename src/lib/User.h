@@ -9,6 +9,6 @@ class User
         void setUserName(std::string user);
 
     private:
-        std::string username;
+        std::string username = "";
 
 };

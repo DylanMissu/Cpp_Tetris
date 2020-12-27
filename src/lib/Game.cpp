@@ -15,10 +15,11 @@ Game::Game(const int width, const int height)
 
 void Game::gameStep()
 {
-    bool updated = input.checkUserInput();
-    gameTimer.setState(!updated);
+    checkInput();
 
-    if(timer.interval(500/(numCleared/16.0+1) + 100))
+    double gameDelay = 500/(numCleared/16.0+1) + 100;
+
+    if(timer.interval(gameDelay))
     {
         gameTimer.setState(false);
         tetrisBlock.down();
@@ -27,23 +28,39 @@ void Game::gameStep()
 
     if (!gameTimer.getState()) 
     {
-        gameTimer.setState(true);
-        graphics.clearAll();
-
-        gameHasEnded = tetrisBlock.show();
-
-        console.drawToConsole(graphics);
+        update();
         std::cout << "Rows cleared: " << numCleared << std::endl;
         std::cout << "User: " << user.getUserName() << std::endl;
     }
 
     if (gameHasEnded)
     {
-        console.clear();
-        std::cout << "\e[1;31m" << "GAME OVER" << "\e[0m" << std::endl;
-        std::cout << "Well done " << user.getUserName() << "!" << std::endl;
-        std::cout << "You cleared " << numCleared << " rows!" << std::endl;
+        gameOver();
     }
+}
+
+void Game::checkInput()
+{
+    bool updated = input.checkUserInput();
+    gameTimer.setState(!updated);
+}
+
+void Game::gameOver()
+{
+    console.clear();
+    std::cout << "\e[1;31m" << "GAME OVER" << "\e[0m" << std::endl;
+    std::cout << "Well done " << user.getUserName() << "!" << std::endl;
+    std::cout << "You cleared " << numCleared << " rows!" << std::endl;
+}
+
+void Game::update()
+{
+    gameTimer.setState(true);
+    graphics.clearAll();
+
+    gameHasEnded = tetrisBlock.show();
+
+    console.drawToConsole(graphics);
 }
 
 void Game::endGame()
