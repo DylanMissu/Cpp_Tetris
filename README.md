@@ -1,9 +1,5 @@
 # Welcome to tetris!
 
-## current progress
-
-[![video](https://img.youtube.com/vi/tNAmQq7JPvg/0.jpg)](https://www.youtube.com/watch?v=tNAmQq7JPvg)
-
 ## how to run
 ```bash
 mingw32-make run
